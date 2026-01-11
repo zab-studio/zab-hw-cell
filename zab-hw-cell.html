@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zab H.W Cell - Premium Homework Diary</title>
+    <style>
+        /* Global Styles & Variables */
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-card: #242424;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --accent-blue: #3b82f6;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --shadow-soft: 0 4px 20px rgba(0,0,0,0.3);
+            --shadow-hover: 0 8px 30px rgba(0,0,0,0.4);
+            --border-radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #e2e8f0;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --shadow-soft: 0 4px 20px rgba(0,0,0,0.1);
+            --shadow-hover: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            transition: var(--transition);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Premium Title */
+        .hero-title {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .hero-title h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            background: linear-gradient(135deg, var(--accent-blue), #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-card);
+            border: 2px solid var(--accent-blue);
+            border-radius: 50px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 1000;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Auth Card */
+        .auth-card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            max-width: 400px;
+            margin: 40px auto;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+        }
+
+        .auth-card:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.1);
+            color: var(--text-primary);
+            font-size: 16px;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .input-group input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            background: rgba(255,255,255,0.15);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-bottom: 12px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-blue), #60a5fa);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent-blue);
+            border: 2px solid var(--accent-blue);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-blue);
+            color: white;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--accent-green), #34d399);
+            color: white;
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, var(--accent-red), #f87171);
+            color: white;
+            padding: 8px 16px;
+            width: auto;
+            font-size: 14px;
+        }
+
+        /* Student Profile Card */
+        .profile-card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-soft);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 20px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .profile-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        .profile-info h3 {
+            color: var(--accent-blue);
+            margin-bottom: 10px;
+        }
+
+        .profile-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        /* Homework Form */
+        .homework-form {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        select {
+            padding: 14px 16px;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.1);
+            color: var(--text-primary);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        select:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 14px 16px;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.1);
+            color: var(--text-primary);
+            font-family: inherit;
+            resize: vertical;
+            transition: var(--transition);
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            background: rgba(255,255,255,0.15);
+        }
+
+        /* Dashboard Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .stat-total .stat-number { color: var(--accent-blue); }
+        .stat-pending .stat-number { color: var(--accent-red); }
+        .stat-completed .stat-number { color: var(--accent-green); }
+
+        /* Progress Visuals */
+        .progress-section {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .progress-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: conic-gradient(var(--accent-green) 0deg, var(--accent-green) calc(var(--done-percent) * 3.6deg), var(--accent-red) 0deg);
+            margin: 0 auto 20px;
+            position: relative;
+        }
+
+        .progress-circle::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            background: var(--bg-primary);
+            border-radius: 50%;
+        }
+
+        .progress-circle::after {
+            content: attr(data-percent) "%";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent-green);
+        }
+
+        @media (max-width: 768px) {
+            .progress-circle {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .progress-circle::before {
+                top: 15px;
+                left: 15px;
+                right: 15px;
+                bottom: 15px;
+            }
+        }
+
+        /* Homework List */
+        .homework-list {
+            display: grid;
+            gap: 20px;
+        }
+
+        .homework-card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--shadow-soft);
+            border-left: 5px solid var(--accent-blue);
+            transition: var(--transition);
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .homework-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .homework-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .homework-date {
+            font-weight: 600;
+            color: var(--accent-blue);
+        }
+
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-done {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--accent-green);
+        }
+
+        .status-pending {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--accent-red);
+        }
+
+        .homework-subject {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .homework-details {
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        /* AI Agent */
+        .ai-agent {
+            background: linear-gradient(135deg, var(--accent-blue), #60a5fa);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-hover);
+            text-align: center;
+        }
+
+        .ai-avatar {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Messages */
+        .message {
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-weight: 500;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .message-success {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--accent-green);
+            border-left: 4px solid var(--accent-green);
+        }
+
+        .message-error {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--accent-red);
+            border-left: 4px solid var(--accent-red);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+
+        .empty-state svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: var(--shadow-hover);
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .auth-card, .homework-form, .progress-section {
+                padding: 25px 20px;
+            }
+        }
+
+        /* Logout Button */
+        .logout-section {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+        🌙
+    </button>
+
+    <div class="container">
+        <!-- Authentication Section -->
+        <div id="authSection" class="auth-section">
+            <div class="hero-title">
+                <h1>Welcome to Zab H.W Cell</h1>
+                <p class="hero-subtitle">Please add your email or phone number and set a password for your safety.</p>
+            </div>
+            
+            <div class="auth-card">
+                <div id="messageArea" class="message" style="display: none;"></div>
+                
+                <div class="input-group">
+                    <label for="authIdentifier">Email or Phone Number</label>
+                    <input type="text" id="authIdentifier" placeholder="example@email.com or +880123456789">
+                </div>
+                
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password">
+                </div>
+                
+                <button class="btn btn-primary" onclick="login()">Login</button>
+                <button class="btn btn-secondary" onclick="signup()">Sign Up</button>
+            </div>
+        </div>
+
+        <!-- Main App Section -->
+        <div id="mainApp" class="main-app" style="display: none;">
+            <!-- Student Profile -->
+            <div class="profile-card">
+                <div class="profile-info">
+                    <h3>👋 Hello, <span id="studentName">Student</span>!</h3>
+                    <div class="profile-field">
+                        <span>Class: <strong id="studentClass">-</strong></span>
+                        <span>School: <strong id="studentSchool">-</strong></span>
+                        <span>DOB: <strong id="studentDOB">-</strong></span>
+                    </div>
+                </div>
+                <button class="btn btn-secondary" onclick="toggleProfileEdit()">Edit Profile</button>
+            </div>
+
+            <!-- Stats Dashboard -->
+            <div class="stats-grid">
+                <div class="stat-card stat-total">
+                    <div class="stat-number" id="totalCount">0</div>
+                    <Total Homework>
+                </div>
+                <div class="stat-card stat-pending">
+                    <div class="stat-number" id="pendingCount">0</div>
+                    <Pending>
+                </div>
+                <div class="stat-card stat-completed">
+                    <div class="stat-number" id="completedCount">0</div>
+                    <Completed>
+                </div>
+            </div>
+
+            <!-- Progress Visuals -->
+            <div class="progress-section">
+                <h3 style="margin-bottom: 20px; text-align: center;">📊 Your Progress</h3>
+                <div class="progress-circle" id="progressCircle" data-percent="0"></div>
+                <div style="text-align: center; font-size: 1.1rem;">
+                    <span id="progressText">0% Completed</span>
+                </div>
+            </div>
+
+            <!-- Homework Form -->
+            <div class="homework-form">
+                <h3 style="margin-bottom: 20px;">➕ Add New Homework</h3>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="hwDate">📅 Date</label>
+                        <input type="date" id="hwDate">
+                    </div>
+                    <div class="input-group">
+                        <label for="hwSubject">📚 Subject</label>
+                        <input type="text" id="hwSubject" placeholder="Mathematics, Science, etc.">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="hwDetails">✏️ Homework Details</label>
+                    <textarea id="hwDetails" placeholder="Write your homework details here..."></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="hwStatus">✅ Status</label>
+                    <select id="hwStatus">
+                        <option value="pending">Pending</option>
+                        <option value="done">Done</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" onclick="saveHomework()">Save Homework</button>
+            </div>
+
+            <!-- Zab AI Agent -->
+            <div class="ai-agent">
+                <div class="ai-avatar">🤖</div>
+                <h3 style="color: white; margin-bottom: 15px;">Zab AI Agent</h3>
+                <div id="aiMessage" style="color: white; line-height: 1.6; max-width: 600px; margin: 0 auto;">
+                    Welcome! Add your first homework to get started. Consistency is key to success! 🚀
+                </div>
+            </div>
+
+            <!-- Homework List -->
+            <div id="homeworkList">
+                <div class="empty-state">
+                    <div style="font-size: 4rem;">📝</div>
+                    <h3>No homework yet</h3>
+                    <p>Add your first homework using the form above!</p>
+                </div>
+            </div>
+
+            <!-- Logout -->
+            <div class="logout-section">
+                <button class="btn btn-danger" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Edit Modal -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <h3>Edit Profile</h3>
+            <div class="input-group">
+                <label for="editName">Student Name</label>
+                <input type="text" id="editName">
+            </div>
+            <div class="input-group">
+                <label for="editDOB">Date of Birth</label>
+                <input type="date" id="editDOB">
+            </div>
+            <div class="input-group">
+                <label for="editClass">Class/Grade</label>
+                <input type="text" id="editClass">
+            </div>
+            <div class="input-group">
+                <label for="editSchool">School/Institution</label>
+                <input type="text" id="editSchool">
+            </div>
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button class="btn btn-primary" style="flex: 1;" onclick="saveProfile()">Save</button>
+                <button class="btn btn-secondary" style="flex: 1;" onclick="toggleProfileEdit()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <h3>Delete Homework?</h3>
+            <p>Are you sure you want to delete this homework entry? This action cannot be undone.</p>
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button class="btn btn-danger" style="flex: 1;" id="confirmDelete">Yes, Delete</button>
+                <button class="btn btn-secondary" style="flex: 1;" onclick="closeDeleteModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========================================
+        // GLOBAL STATE & INITIALIZATION
+        // ========================================
+        let currentUser = null;
+        let homeworkData = [];
+        let isProfileEditMode = false;
+
+        // Motivational messages for Zab AI Agent
+        const aiMessages = [
+            "Great job completing your homework! You're building excellent habits. Keep it up! 🌟",
+            "Consistency is the key to success. Just one homework at a time! 💪",
+            "Remember: Small steps today lead to big achievements tomorrow. You've got this! 🚀",
+            "Quality over quantity. Focus on understanding, not just finishing. Excellent work! 👏",
+            "Every completed task makes you stronger. You're doing amazing! ✨",
+            "Discipline today = Freedom tomorrow. Proud of your dedication! 🏆",
+            "The best time to study was yesterday. The next best time is now! 📚",
+            "You're not just doing homework, you're investing in your future. Keep shining! 🌈",
+            "Progress, not perfection. Every step counts! Forward! ➡️",
+            "Your effort today is shaping your tomorrow. Stay focused and strong! 🔥"
+        ];
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuthStatus();
+            setMinDate();
+            updateAI();
+        });
+
+        // ========================================
+        // AUTHENTICATION SYSTEM
+        // ========================================
+        function checkAuthStatus() {
+            currentUser = localStorage.getItem('currentUser');
+            if (currentUser) {
+                loadUserData();
+                document.getElementById('authSection').style.display = 'none';
+                document.getElementById('mainApp').style.display = 'block';
+                loadHomework();
+                updateDashboard();
+            }
+        }
+
+        function showMessage(message, type = 'success') {
+            const messageArea = document.getElementById('messageArea');
+            messageArea.textContent = message;
+            messageArea.className = `message message-${type}`;
+            messageArea.style.display = 'block';
+            setTimeout(() => {
+                messageArea.style.display = 'none';
+            }, 4000);
+        }
+
+        function signup() {
+            const identifier = document.getElementById('authIdentifier').value.trim();
+            const password = document.getElementById('password').value;
+
+            if (!identifier || !password) {
+                showMessage('Please fill all fields', 'error');
+                return;
+            }
+
+            // Check if user exists
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const userExists = users.find(u => u.identifier === identifier);
+
+            if (userExists) {
+                showMessage('Account already exists! Please login.', 'error');
+                return;
+            }
+
+            // Create new user
+            const newUser = {
+                identifier,
+                password: btoa(password), // Simple base64 encoding (not production secure)
+                createdAt: new Date().toISOString()
+            };
+
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            localStorage.setItem('currentUser', identifier);
+
+            showMessage('Account created successfully! Welcome aboard!', 'success');
+            setTimeout(() => {
+                location.reload();
+            }, 1500);
+        }
+
+        function login() {
+            const identifier = document.getElementById('authIdentifier').value.trim();
+            const password = document.getElementById('password').value;
+
+            if (!identifier || !password) {
+                showMessage('Please fill all fields', 'error');
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const user = users.find(u => u.identifier === identifier && u.password === btoa(password));
+
+            if (user) {
+                localStorage.setItem('currentUser', identifier);
+                showMessage('Login successful! Loading your diary...', 'success');
+                setTimeout(() => {
+                    location.reload();
+                }, 1000);
+            } else {
+                showMessage('Invalid credentials. Check your email/phone and password.', 'error');
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            location.reload();
+        }
+
+        // ========================================
+        // USER DATA MANAGEMENT
+        // ========================================
+        function loadUserData() {
+            const profile = JSON.parse(localStorage.getItem(`profile_${currentUser}`) || '{}');
+            document.getElementById('studentName').textContent = profile.name || 'Student';
+            document.getElementById('studentClass').textContent = profile.class || '-';
+            document.getElementById('studentSchool').textContent = profile.school || '-';
+            document.getElementById('studentDOB').textContent = profile.dob || '-';
+        }
+
+        function toggleProfileEdit() {
+            isProfileEditMode = !isProfileEditMode;
+            const modal = document.getElementById('profileModal');
+            
+            if (isProfileEditMode) {
+                // Load current data
+                const profile = JSON.parse(localStorage.getItem(`profile_${currentUser}`) || '{}');
+                document.getElementById('editName').value = profile.name || '';
+                document.getElementById('editDOB').value = profile.dob || '';
+                document.getElementById('editClass').value = profile.class || '';
+                document.getElementById('editSchool').value = profile.school || '';
+                modal.classList.add('active');
+            } else {
+                modal.classList.remove('active');
+            }
+        }
+
+        function saveProfile() {
+            const profile = {
+                name: document.getElementById('editName').value.trim() || 'Student',
+                dob: document.getElementById('editDOB').value,
+                class: document.getElementById('editClass').value.trim(),
+                school: document.getElementById('editSchool').value.trim()
+            };
+
+            localStorage.setItem(`profile_${currentUser}`, JSON.stringify(profile));
+            loadUserData();
+            toggleProfileEdit();
+            showMessage('Profile updated successfully!', 'success');
+        }
+
+        // ========================================
+        // HOMEWORK MANAGEMENT
+        // ========================================
+        function setMinDate() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('hwDate').value = today;
+            document.getElementById('hwDate').min = today;
+            document.getElementById('editDOB').max = today;
+        }
+
+        function saveHomework() {
+            const hwData = {
+                id: Date.now(),
+                date: document.getElementById('hwDate').value,
+                subject: document.getElementById('hwSubject').value.trim(),
+                details: document.getElementById('hwDetails').value.trim(),
+                status: document.getElementById('hwStatus').value,
+                createdAt: new Date().toISOString()
+            };
+
+            if (!hwData.subject || !hwData.details) {
+                showMessage('Please fill subject and homework details', 'error');
+                return;
+            }
+
+            // Load existing homework
+            homeworkData = JSON.parse(localStorage.getItem(`homework_${currentUser}`) || '[]');
+            homeworkData.push(hwData);
+            
+            // Save sorted by date (newest first)
+            homeworkData.sort((a, b) => new Date(b.date) - new Date(a.date));
+            localStorage.setItem(`homework_${currentUser}`, JSON.stringify(homeworkData));
+
+            // Clear form
+            document.getElementById('hwSubject').value = '';
+            document.getElementById('hwDetails').value = '';
+            document.getElementById('hwStatus').value = 'pending';
+            setMinDate();
+
+            showMessage('Homework saved successfully! 📚✨', 'success');
+            loadHomework();
+            updateDashboard();
+            updateAI();
+        }
+
+        function loadHomework() {
+            homeworkData = JSON.parse(localStorage.getItem(`homework_${currentUser}`) || '[]');
+            renderHomework();
+        }
+
+        function renderHomework() {
+            const container = document.getElementById('homeworkList');
+            
+            if (homeworkData.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div style="font-size: 4rem;">📝</div>
+                        <h3>No homework yet</h3>
+                        <p>Add your first homework using the form above!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = homeworkData.map(hw => `
+                <div class="homework-card">
+                    <div class="homework-header">
+                        <div class="homework-date">${formatDate(hw.date)}</div>
+                        <div class="status-badge status-${hw.status}">
+                            ${hw.status.toUpperCase()}
+                        </div>
+                    </div>
+                    <div class="homework-subject">${escapeHtml(hw.subject)}</div>
+                    <div class="homework-details">${escapeHtml(hw.details)}</div>
+                    <button class="btn btn-danger" onclick="confirmDelete(${hw.id})">Delete</button>
+                </div>
+            `).join('');
+        }
+
+        function confirmDelete(id) {
+            document.getElementById('confirmDelete').onclick = () => deleteHomework(id);
+            document.getElementById('deleteModal').classList.add('active');
+        }
+
+        function closeDeleteModal() {
+            document.getElementById('deleteModal').classList.remove('active');
+        }
+
+        function deleteHomework(id) {
+            homeworkData = homeworkData.filter(hw => hw.id !== id);
+            localStorage.setItem(`homework_${currentUser}`, JSON.stringify(homeworkData));
+            renderHomework();
+            updateDashboard();
+            updateAI();
+            closeDeleteModal();
+            showMessage('Homework deleted successfully', 'success');
+        }
+
+        // ========================================
+        // DASHBOARD & ANALYTICS
+        // ========================================
+        function updateDashboard() {
+            const total = homeworkData.length;
+            const pending = homeworkData.filter(hw => hw.status === 'pending').length;
+            const completed = total - pending;
+            const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+            document.getElementById('totalCount').textContent = total;
+            document.getElementById('pendingCount').textContent = pending;
+            document.getElementById('completedCount').textContent = completed;
+
+            const progressCircle = document.getElementById('progressCircle');
+            progressCircle.style.setProperty('--done-percent', percent);
+            progressCircle.setAttribute('data-percent', percent);
+            document.getElementById('progressText').textContent = `${percent}% Completed`;
+
+            if (total === 0) {
+                document.getElementById('progressText').textContent = 'No homework yet';
+            }
+        }
+
+        // ========================================
+        // ZAB AI AGENT
+        // ========================================
+        function updateAI() {
+            const completed = homeworkData.filter(hw => hw.status === 'done').length;
+            const total = homeworkData.length;
+            const hasProgress = completed > 0;
+
+            let message;
+            if (hasProgress && total > 0) {
+                // Congratulatory message
+                const recentCompletions = homeworkData.filter(hw => hw.status === 'done')
+                    .slice(0, 3).map(hw => hw.subject).join(', ');
+                message = `🎉 Amazing work completing ${recentCompletions}! You're building incredible discipline. Keep this momentum going!`;
+            } else if (total === 0) {
+                message = `👋 Welcome to Zab H.W Cell! Add your first homework and let's start building great study habits together. Consistency is your superpower! 🚀`;
+            } else {
+                // Motivational message
+                const randomMsg = aiMessages[Math.floor(Math.random() * aiMessages.length)];
+                message = randomMsg;
+            }
+
+            document.getElementById('aiMessage').textContent = message;
+        }
+
+        // ========================================
+        // THEME SYSTEM
+        // ========================================
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            
+            // Persist theme preference
+            localStorage.setItem('theme', newTheme);
+            
+            // Update toggle icon
+            const toggle = document.querySelector('.theme-toggle');
+            toggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Load saved theme
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.body.setAttribute('data-theme', savedTheme);
+            document.querySelector('.theme-toggle').textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // ========================================
+        // UTILITY FUNCTIONS
+        // ========================================
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { 
+                weekday: 'short', 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+            });
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Load theme on init
+        loadTheme();
+
+        // Set today's date on load
+        setMinDate();
+    </script>
+</body>
+</html>
